@@ -1,0 +1,62 @@
+You’re getting **two issues**:
+
+1. **PushRejected → non-fast-forward**
+2. **git pull → refusing to merge unrelated histories**
+
+This happens when **your local repo and the remote repo were created separately**, so Git thinks they have **different histories**.
+
+Here are the **clean solutions**, pick the one you want ⬇️
+
+---
+
+# ✅ **SOLUTION 1: Pull with unrelated histories (safe, recommended)**
+
+Run this:
+
+```
+git pull origin main --allow-unrelated-histories
+```
+
+Git will ask you to resolve merge conflicts (if any).
+After resolving and committing:
+
+```
+git push origin main
+```
+
+Done.
+
+---
+
+# ✅ **SOLUTION 2: Force push your local version (remote will be overwritten)**
+
+⚠️ *This deletes whatever is on GitHub main branch.*
+
+Use only if you want to override GitHub.
+
+```
+git push origin main --force
+```
+
+---
+
+# ❗ Why did this happen?
+
+* You **created a repo locally**, then
+* You **created a GitHub repo with README or license**,
+* Both have different commit histories → Git refuses to merge.
+
+---
+
+# ⭐ Recommended for you (quick + safe)
+
+Run this:
+
+```
+git pull origin main --allow-unrelated-histories
+git add .
+git commit -m "merge remote and local"
+git push origin main
+```
+
+If you want, paste the result here—I’ll fix any conflict step by step.
